@@ -1,0 +1,61 @@
+{
+  "name": "project-files-to-txt",
+  "displayName": "project-files-to-txt",
+  "description": "Genera un único archivo TXT con los contenidos de todos los archivos del proyecto",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.exportProjectToTxt",
+        "title": "Export Project to TXT"
+      }
+    ],
+
+    "configuration": {
+      "type": "object",
+      "title": "Project Files to TXT Settings",
+      "properties": {
+        "projectFilesToTxt.exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "node_modules",
+            "build",
+            ".git",
+            ".vscode",
+            "package-lock.json"],
+          "description": "Lista de carpetas o archivos que se excluirán al exportar el proyecto a TXT."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0",
+    "typescript": "^5.7.2",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
